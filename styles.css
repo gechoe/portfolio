@@ -1214,7 +1214,6 @@ h1 {
   min-height: 270px;
   padding: 20px 22px;
   background: #6e5f52;
-  /* rgba(110, 95, 82, 0.42); */
   border: 2px solid rgba(255, 244, 214, 0.24);
   border-radius: 10px;
 }
@@ -1536,11 +1535,6 @@ h1 {
   transform: perspective(900px) rotateX(0) scale(1);
 }
 
-/*
-  The flap's flat base sits flush with the pocket's flat top edge
-  (see .contact-envelope-pocket's top: 70px below), so the two
-  shapes read as one continuous envelope silhouette.
-*/
 .contact-envelope-flap {
   position: absolute;
   top: -17px;
@@ -1555,11 +1549,6 @@ h1 {
   clip-path: polygon(0 100%, 50% 0%, 100% 100%);
 }
 
-/*
-  The envelope's paper body. The two corner-to-corner gradients
-  recreate the classic envelope silhouette: fold lines crossing
-  at the center, same as the seams on the back of a real envelope.
-*/
 .contact-envelope-pocket {
   position: absolute;
   top: 70px;
