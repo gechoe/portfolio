@@ -1,0 +1,141 @@
+<section
+      class="extended-page"
+      id="projects"
+      aria-label="Grace's projects"
+    >
+      <div class="projects-header">
+        <h2>Projects</h2>
+
+        <p class="projects-intro">
+          A few things I've built along the way~!
+        </p>
+      </div>
+
+      <div class="cards-container projects-cards" id="projects-cards">
+        <article class="info-card project-card">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <img class="project-card-image" src="images/project_studybuddy2.png" alt="StudyBuddy project preview" />
+          <h2>StudyBuddy</h2>
+          <p class="project-tools">Java · Android Studio · JavaScript · HTML</p>
+          <p>An Android and web application designed to boost motivation during study sessions with collectible virtual StudyBuddy companions.</p>
+        </article>
+
+        <article class="info-card project-card">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <img class="project-card-image" src="images/project_flower2.png" alt="Flower project preview" />
+          <h2>Flower</h2>
+          <p class="project-tools">C/C++ · Makefile · AGL Window · FMOD</p>
+          <p>A mini game where players draw a path from a water spout to a flower vase, using meshes, renderers, shaders, particles, collision detection, and sound effects.</p>
+        </article>
+
+        <article class="info-card project-card">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <img class="project-card-image" src="images/project_filesystem2.png" alt="File System project preview" />
+          <h2>File System</h2>
+          <p class="project-tools">C · Makefile</p>
+          <p>A custom file system built from scratch with a hierarchical tree structure, file permissions, and a shell for navigating and interacting with files.</p>
+        </article>
+
+        <article class="info-card project-card">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <img class="project-card-image" src="images/project_blobilism2.png" alt="Blobilism project preview" />
+          <h2>Blobilism</h2>
+          <p class="project-tools">C++ · CMake · OpenGL · GLFW</p>
+          <p>A simple OpenGL and GLFW drawing program with drawing, color selection, marker sizing, and erasing tools.</p>
+        </article>
+
+        <article class="info-card project-card">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <img class="project-card-image" src="images/project_text_adven.png" alt="Text Adventure Games project preview" />
+          <h2>Text Adventure Games</h2>
+          <p class="project-tools">Python · Jupyter Notebooks</p>
+          <p>Two text-adventure games built in Python, including a custom parser that interprets player commands.</p>
+        </article>
+
+        <article class="info-card project-card">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <img class="project-card-image" src="images/project_meshviewer2.png" alt="Mesh Viewer project preview" />
+          <h2>Mesh Viewer</h2>
+          <p class="project-tools">C++ · CMake · AGL Window</p>
+          <p>A PLY object viewer supporting rotation, zooming, navigation between objects, and different shaders.</p>
+        </article>
+
+        <article class="info-card project-card is-hidden">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <div class="project-card-placeholder" aria-hidden="true">✦</div>
+          <h2>Portfolio Website</h2>
+          <p class="project-tools">HTML · CSS · JavaScript</p>
+          <p>A playful personal portfolio website designed from the ground up with interactive sections, custom artwork, and responsive layouts.</p>
+        </article>
+
+        <article class="info-card project-card is-hidden">
+          <span class="info-card-frame" aria-hidden="true"></span>
+          <div class="project-card-placeholder" aria-hidden="true">✿</div>
+          <h2>Interactive UI Experiments</h2>
+          <p class="project-tools">JavaScript · HTML · CSS</p>
+          <p>A collection of small interactive interface experiments exploring animation, accessibility, responsive design, and playful user experiences.</p>
+        </article>
+      </div>
+
+      <div class="projects-view-more-wrap">
+        <button
+          type="button"
+          class="projects-view-more"
+          id="projects-view-more"
+          aria-expanded="false"
+          aria-controls="projects-cards"
+        >
+          <span aria-hidden="true">＋</span>
+          <span>View More</span>
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="four-leaf-clover"
+        id="four-leaf-clover"
+        aria-label="Hidden four-leaf clover"
+        aria-controls="clover-message"
+        aria-expanded="false"
+      >
+        <img
+          src="images/Cursor_Click_Clover.PNG"
+          id="four-leaf-clover-image"
+          alt=""
+        />
+      </button>
+    </section>
+
+<aside
+    class="clover-message"
+    id="clover-message"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-label="Four-leaf clover discovery"
+  >
+    <button
+      type="button"
+      class="clover-message-close"
+      id="clover-message-close"
+      aria-label="Close message"
+    >
+      &times;
+    </button>
+
+    <p class="clover-message-intro">
+      Nice catch! \(•ᴗ•)/ꕤ✧*.ﾟ <br />
+      You found the lucky four-leaf clover~! 🍀
+    </p>
+
+    <div class="luck-card">
+      <p class="luck-label">
+        Your developer luck
+      </p>
+
+      <p
+        class="luck-message"
+        id="developer-luck"
+      ></p>
+    </div>
+  </aside>

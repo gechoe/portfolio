@@ -1,0 +1,115 @@
+<section
+      class="dirt-section"
+      id="education"
+      aria-label="Grace's education"
+    >
+      <div class="education-content">
+          <h2>Education</h2>
+
+          <div
+            class="education-summary"
+            aria-label="Education history"
+          >
+            <div class="education-entry">
+              <div class="education-details">
+                <strong>Bryn Mawr College</strong>
+                <span class="education-degree">
+                  B.A. in Computer Science, Minor in English
+                </span>
+              </div>
+
+              <span class="education-status completed">
+                Completed
+              </span>
+            </div>
+
+            <div class="education-entry">
+              <div class="education-details">
+                <strong>University of Pennsylvania</strong>
+                <span class="education-degree">
+                  M.S.E in Artificial Intelligence
+                </span>
+              </div>
+
+              <span class="education-status in-progress">
+                In Progress
+              </span>
+            </div>
+          </div>
+
+          <h3 class="courses-title">Courses Taken</h3>
+
+          <div
+            class="course-tab-list"
+            role="tablist"
+            aria-label="Courses by college"
+          >
+            <button
+              type="button"
+              class="course-tab"
+              id="bryn-mawr-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="bryn-mawr-panel"
+              tabindex="0"
+            >
+              Bryn Mawr College
+            </button>
+
+            <button
+              type="button"
+              class="course-tab"
+              id="upenn-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="upenn-panel"
+              tabindex="-1"
+            >
+              University of Pennsylvania
+            </button>
+          </div>
+
+          <div
+            class="course-panel"
+            id="bryn-mawr-panel"
+            role="tabpanel"
+            aria-labelledby="bryn-mawr-tab"
+          >
+            <h3>Computer Science Related Courses (13)</h3>
+            <ul class="course-list">
+              <li>CMSC B113 — Computer Science I</li>
+              <li>CMSC B151/206 — Data Structures</li>
+              <li>CMSC B223 — Systems Programming</li>
+              <li>CMSC B231 — Discrete Mathematics</li>
+              <li>CMSC B240 — Computer Organization</li>
+              <li>CMSC B245 — Programming Languages</li>
+              <li>CMSC B283 — Ethics in Computer Science</li>
+              <li>MATH H215A — Linear Algebra</li>
+              <li>CMSC B313 — Computer Graphics</li>
+              <li>CMSC B337 — Algorithms: Design &amp; Practice</li>
+              <li>CMSC B353 — Software Engineering</li>
+              <li>CMSC B355 — Operating Systems</li>
+              <li>CMSC B399 — Senior Conference</li>
+            </ul>
+          </div>
+
+          <div
+            class="course-panel"
+            id="upenn-panel"
+            role="tabpanel"
+            aria-labelledby="upenn-tab"
+            hidden
+          >
+            <h3>Computer Science Related Courses (7)</h3>
+            <ul class="course-list">
+              <li>CIS 5210 — Artificial Intelligence</li>
+              <li>CIS 5450 — Big Data Analytics</li>
+              <li>CIS 5530 — Networked Systems</li>
+              <li>CIS 5300 — Natural Language Processing</li>
+              <li>EAS 5240 — Technology Ethics and the Legal Landscape</li>
+              <li>ESE 5420 - Statistics for Data Science</li>
+              <li>CIS 5690 - GPU Computing for Machine Learning Systems [In-Progress]</li>
+            </ul>
+          </div>
+      </div>
+    </section>

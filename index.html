@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="initializing-home">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Grace's Portfolio</title>
+
+  <link rel="shortcut icon" href="images/Star.PNG" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="styles.css">
+
+  <noscript>
+    <style>
+      html.initializing-home body {
+        visibility: visible;
+      }
+    </style>
+  </noscript>
+</head>
+
+<body id="top">
+  <header class="top-bar">
+    <a
+      href="#home"
+      class="site-logo"
+      aria-label="Return to the home section"
+    >
+      <img
+        src="images/Initials_Logo.PNG"
+        alt="Grace's initials logo"
+      />
+    </a>
+
+    <nav class="top-menu" aria-label="Main navigation">
+      <a href="#home" class="menu-button">Home</a>
+      <a href="#experience" class="menu-button">Experience</a>
+      <a href="#projects" class="menu-button">Projects</a>
+      <a href="#education" class="menu-button">Education</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#about" class="menu-button about-button">About Me</a>
+
+      <a
+        href="#home"
+        class="menu-button contact-button"
+        id="contact-nav-button"
+        aria-haspopup="dialog"
+      >
+        Contact
+      </a>
+    </div>
+  </header>
+
+  <main id="site-sections">
+    <div data-include="sections/about.html"></div>
+    <div data-include="sections/experience.html"></div>
+    <div data-include="sections/home.html"></div>
+    <div data-include="sections/projects.html"></div>
+    <div data-include="sections/education.html"></div>
+    <div data-include="sections/contact.html"></div>
+  </main>
+
+  <a
+    href="#home"
+    class="back-to-top"
+    id="home-return-button"
+    aria-label="Return to the home section"
+    hidden
+  >
+    <span
+      class="back-to-top-arrow"
+      id="home-return-arrow"
+      aria-hidden="true"
+    >
+      ↑
+    </span>
+
+    <span id="home-return-label">
+      Back to top
+    </span>
+  </a>
+
+  <footer>
+    &copy; 2026 Grace
+  </footer>
+
+  <script src="include.js"></script>
+</body>
+</html>
