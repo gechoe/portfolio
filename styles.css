@@ -7,6 +7,193 @@
   --dirt-section-height: 1300px;
 }
 
+/* =========================================================
+   PROJECT IMAGE TILES
+   Reveals project information on hover, keyboard focus, or tap.
+   Keep this block at the end of styles.css so it overrides the
+   earlier Bubble-card project rules.
+   ========================================================= */
+
+.projects-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(22px, 4vw, 48px);
+}
+
+.project-tile {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1.3 / 1;
+  padding: 0;
+  overflow: hidden;
+  background: #dceac9;
+  border: 4px solid rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(48, 76, 52, 0.2);
+  cursor: url("images/Star.PNG") 3 3, pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-tile.is-hidden {
+  display: none;
+}
+
+.project-tile:hover,
+.project-tile:focus-visible,
+.project-tile:focus-within,
+.project-tile.is-active {
+  outline: none;
+  transform: translateY(-7px);
+  box-shadow: 0 18px 30px rgba(48, 76, 52, 0.3);
+}
+
+.project-tile .project-card-image,
+.project-tile .project-card-placeholder {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  object-fit: cover;
+  transition:
+    filter 0.35s ease,
+    transform 0.45s ease;
+}
+
+.project-tile .project-card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dceac9;
+  color: #466e50;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 1;
+}
+
+.project-overlay-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(30, 57, 38, 0.96) 0%,
+    rgba(49, 84, 59, 0.88) 55%,
+    rgba(49, 84, 59, 0.68) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.project-overlay-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(22px, 4vw, 40px);
+  color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(22px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s ease;
+}
+
+.project-overlay-content h2 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+.project-overlay-content .project-tools {
+  margin: 0 0 14px;
+  color: #dff2bd;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.project-overlay-content > p:last-child {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(0.86rem, 1.5vw, 1.05rem);
+  line-height: 1.55;
+}
+
+.project-tile:hover .project-card-image,
+.project-tile:focus-visible .project-card-image,
+.project-tile:focus-within .project-card-image,
+.project-tile.is-active .project-card-image,
+.project-tile:hover .project-card-placeholder,
+.project-tile:focus-visible .project-card-placeholder,
+.project-tile:focus-within .project-card-placeholder,
+.project-tile.is-active .project-card-placeholder {
+  filter: brightness(0.58);
+  transform: scale(1.06);
+}
+
+.project-tile:hover .project-overlay-background,
+.project-tile:focus-visible .project-overlay-background,
+.project-tile:focus-within .project-overlay-background,
+.project-tile.is-active .project-overlay-background {
+  opacity: 1;
+}
+
+.project-tile:hover .project-overlay-content,
+.project-tile:focus-visible .project-overlay-content,
+.project-tile:focus-within .project-overlay-content,
+.project-tile.is-active .project-overlay-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 620px) {
+  .projects-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .project-tile {
+    aspect-ratio: 1.15 / 1;
+  }
+}
+
+@media (hover: none) {
+  .project-overlay-background {
+    opacity: 0.72;
+  }
+
+  .project-overlay-content {
+    justify-content: flex-end;
+    opacity: 1;
+    transform: none;
+  }
+
+  .project-overlay-content > p:last-child {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-tile,
+  .project-tile .project-card-image,
+  .project-tile .project-card-placeholder,
+  .project-overlay-background,
+  .project-overlay-content {
+    transition: none;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;

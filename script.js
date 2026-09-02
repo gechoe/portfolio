@@ -1,3 +1,7 @@
+/*
+  Prevent the browser from restoring an old scroll
+  position before we place the page at Home.
+*/
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
@@ -32,13 +36,8 @@ async function createSkyStars() {
 
   starsLayer.replaceChildren();
 
-  for (
-    let index = 0;
-    index < totalStars;
-    index++
-  ) {
-    const star =
-      document.createElement("img");
+  for (let index = 0; index < totalStars; index++) {
+    const star = document.createElement("img");
 
     star.src = "images/favicon_star.PNG";
     star.alt = "";
@@ -55,10 +54,7 @@ async function createSkyStars() {
       `${
         minimumStarSize +
         Math.random() *
-          (
-            maximumStarSize -
-            minimumStarSize
-          )
+          (maximumStarSize - minimumStarSize)
       }px`
     );
 
@@ -80,18 +76,26 @@ async function createSkyStars() {
 
 createSkyStars();
 
+/*
+  Edit these entries to personalize the page revealed by each
+  fixed, sparkling About Me star.
+*/
 const aboutStories = [
   {
     title: "My Hobbies",
-    text: "In my free time, I enjoy\: Drawing 🎨 and photographing 📷 nature, Reading books and graphic novels 📚, Writing short stories ✏️, Going on scenic nature walks 🍀"
+    text: "In my free time, I enjoy: Drawing 🎨 and photographing 📷 nature, Reading books and graphic novels 📚, Writing short stories ✏️, Going on scenic nature walks 🍀"
   },
   {
     title: "Favorite Colors",
     text: "My fav colors are Blue🩵, Green💚, Yellow💛, & White🤍 - naturalistic colors."
   },
   {
-    title: "Favorite Quote",
-    text: "My fav quote is:  \"The only real mistake is the one from which we learn nothing.\” 💬"
+    title: "Favorite Animals",
+    text: "My fav animals are Pandas 🐼 & Axolotls."
+  },
+  {
+    title: "Fav Quote",
+    text: "My fav quote is: \"The only real mistake is the one from which we learn nothing.\" 💬"
   },
   {
     title: "Photo Gallery",
@@ -101,64 +105,48 @@ const aboutStories = [
     title: "Lifelong Learner",
     text: "My main goal is to keep learning, thinking, and growing~!"
   },
-//   {
-//     title: "Mentor",
-//     text: "I value helping other people build confidence, navigate unfamiliar problems, and grow their skills."
-//   },
-//   {
-//     title: "Design Enthusiast",
-//     text: "I care about clear, friendly UI and UX that helps technology feel intuitive and welcoming."
-//   },
-//   {
-//     title: "Project Builder",
-//     text: "I love bringing ideas from an early concept to something real that people can see, use, and enjoy."
-//   },
-//   {
-//     title: "Easter Eggs",
-//     text: "There are some easter eggs hiding around this website. Try and find them all~! :D"
-//   }
+  {
+    title: "Mentor",
+    text: "I value helping other people build confidence, navigate unfamiliar problems, and grow their skills."
+  },
+  {
+    title: "Design Enthusiast",
+    text: "I care about clear, friendly UI and UX that helps technology feel intuitive and welcoming."
+  },
+  {
+    title: "Project Builder",
+    text: "I love bringing ideas from an early concept to something real that people can see, use, and enjoy."
+  },
+  {
+    title: "Easter Eggs",
+    text: "There are some easter eggs hiding around this website. Try and find them all~! :D"
+  }
 ];
 
 const aboutStoryStars = [
-  ...document.querySelectorAll(
-    ".about-story-star"
-  )
+  ...document.querySelectorAll(".about-story-star")
 ];
 
 const aboutBookOverlay =
-  document.getElementById(
-    "about-book-overlay"
-  );
+  document.getElementById("about-book-overlay");
 
 const aboutBookClose =
-  document.getElementById(
-    "about-book-close"
-  );
+  document.getElementById("about-book-close");
 
 const aboutBookPageNumber =
-  document.getElementById(
-    "about-book-page-number"
-  );
+  document.getElementById("about-book-page-number");
 
 const aboutBookTitle =
-  document.getElementById(
-    "about-book-title"
-  );
+  document.getElementById("about-book-title");
 
 const aboutBookText =
-  document.getElementById(
-    "about-book-text"
-  );
+  document.getElementById("about-book-text");
 
 const aboutBookStoryPanel =
-  document.getElementById(
-    "about-book-story-panel"
-  );
+  document.getElementById("about-book-story-panel");
 
 const aboutBookTabs = [
-  ...document.querySelectorAll(
-    ".about-book-tab"
-  )
+  ...document.querySelectorAll(".about-book-tab")
 ];
 
 let lastAboutStar = null;
@@ -174,7 +162,7 @@ function showAboutBookStory(storyIndex) {
   aboutBookTitle.textContent = story.title;
   aboutBookText.textContent = story.text;
   aboutBookPageNumber.textContent =
-    `Fun Fact ${storyIndex + 1} of ${aboutStories.length}`;
+    `Story ${storyIndex + 1} of ${aboutStories.length}`;
 
   aboutBookTabs.forEach((tab, tabIndex) => {
     const isSelected = tabIndex === storyIndex;
@@ -183,6 +171,7 @@ function showAboutBookStory(storyIndex) {
       "aria-selected",
       String(isSelected)
     );
+
     tab.tabIndex = isSelected ? 0 : -1;
 
     if (isSelected) {
@@ -209,17 +198,13 @@ function openAboutBook(storyIndex, starButton) {
   document.body.style.overflow = "hidden";
 
   window.requestAnimationFrame(() => {
-    aboutBookOverlay.classList.add(
-      "is-visible"
-    );
+    aboutBookOverlay.classList.add("is-visible");
     aboutBookClose.focus();
   });
 }
 
 function closeAboutBook() {
-  aboutBookOverlay.classList.remove(
-    "is-visible"
-  );
+  aboutBookOverlay.classList.remove("is-visible");
   document.body.style.overflow = "";
 
   aboutBookHideTimer = setTimeout(() => {
@@ -282,12 +267,12 @@ aboutBookTabs.forEach((tab, tabIndex) => {
   });
 });
 
-aboutBookClose.addEventListener(
+aboutBookClose?.addEventListener(
   "click",
   closeAboutBook
 );
 
-aboutBookOverlay.addEventListener(
+aboutBookOverlay?.addEventListener(
   "click",
   (event) => {
     if (event.target === aboutBookOverlay) {
@@ -299,9 +284,7 @@ aboutBookOverlay.addEventListener(
 window.addEventListener("keydown", (event) => {
   if (
     event.key === "Escape" &&
-    aboutBookOverlay.classList.contains(
-      "is-visible"
-    )
+    aboutBookOverlay?.classList.contains("is-visible")
   ) {
     closeAboutBook();
   }
@@ -334,31 +317,30 @@ function setActiveNavigation(sectionId) {
 
 setActiveNavigation("home");
 
+/*
+  Change this number if the Home landing position
+  needs to be moved farther down or higher.
+*/
 const homeScrollOffset = 0;
 
 const homeReturnButton =
-  document.getElementById(
-    "home-return-button"
-  );
+  document.getElementById("home-return-button");
 
 const homeReturnArrow =
-  document.getElementById(
-    "home-return-arrow"
-  );
+  document.getElementById("home-return-arrow");
 
 const homeReturnLabel =
-  document.getElementById(
-    "home-return-label"
-  );
+  document.getElementById("home-return-label");
 
-function scrollToHome(
-  behavior = "smooth"
-) {
+function scrollToHome(behavior = "smooth") {
+  if (!homeSection) {
+    return;
+  }
+
   window.scrollTo({
     top:
       homeSection.offsetTop +
       homeScrollOffset,
-
     left: 0,
     behavior
   });
@@ -373,7 +355,6 @@ document
         event.preventDefault();
 
         setActiveNavigation("home");
-
         scrollToHome();
 
         history.replaceState(
@@ -385,6 +366,11 @@ document
     );
   });
 
+/*
+  Center the actual content in the viewport when a section
+  button is used. The fixed logo bar is excluded from the
+  available vertical space.
+*/
 function scrollSectionCardsToCenter(
   sectionId,
   behavior = "smooth"
@@ -410,17 +396,19 @@ function scrollSectionCardsToCenter(
     (card) => card.getBoundingClientRect()
   );
 
-  const cardsTop = Math.min(
-    ...cardRectangles.map(
-      (rectangle) => rectangle.top
-    )
-  ) + window.scrollY;
+  const cardsTop =
+    Math.min(
+      ...cardRectangles.map(
+        (rectangle) => rectangle.top
+      )
+    ) + window.scrollY;
 
-  const cardsBottom = Math.max(
-    ...cardRectangles.map(
-      (rectangle) => rectangle.bottom
-    )
-  ) + window.scrollY;
+  const cardsBottom =
+    Math.max(
+      ...cardRectangles.map(
+        (rectangle) => rectangle.bottom
+      )
+    ) + window.scrollY;
 
   const cardsCenter =
     (cardsTop + cardsBottom) / 2;
@@ -455,6 +443,11 @@ function scrollSectionCardsToCenter(
   });
 }
 
+/*
+  Experience is taller than the other sections, so its
+  navigation link reveals the title instead of centering
+  the complete timeline.
+*/
 function scrollExperienceTitleIntoView(
   behavior = "smooth"
 ) {
@@ -490,15 +483,19 @@ function scrollExperienceTitleIntoView(
 
   let desiredTitleTop = logoBarBottom + 56;
 
+  /*
+    Match the title position produced when Education is
+    centered instead of using a viewport-specific gap.
+  */
   if (educationTitle && educationContent) {
     const educationRectangle =
       educationContent.getBoundingClientRect();
 
     const educationContentCenter =
-      (educationRectangle.top +
-        educationRectangle.bottom) /
-        2 +
-      window.scrollY;
+      (
+        educationRectangle.top +
+        educationRectangle.bottom
+      ) / 2 + window.scrollY;
 
     const usableSpaceCenter =
       logoBarBottom +
@@ -538,6 +535,10 @@ function scrollExperienceTitleIntoView(
   });
 }
 
+/*
+  Projects is taller than a single viewport once cards are
+  added, so its link reveals the title with the same spacing.
+*/
 function scrollProjectsTitleIntoView(
   behavior = "smooth"
 ) {
@@ -578,10 +579,10 @@ function scrollProjectsTitleIntoView(
       educationContent.getBoundingClientRect();
 
     const educationContentCenter =
-      (educationRectangle.top +
-        educationRectangle.bottom) /
-        2 +
-      window.scrollY;
+      (
+        educationRectangle.top +
+        educationRectangle.bottom
+      ) / 2 + window.scrollY;
 
     const usableSpaceCenter =
       logoBarBottom +
@@ -703,6 +704,7 @@ function scheduleNavigationUpdate() {
   }
 
   navigationUpdateScheduled = true;
+
   window.requestAnimationFrame(
     updateActiveNavigation
   );
@@ -720,12 +722,20 @@ window.addEventListener(
 );
 
 function updateHomeReturnButton() {
+  if (
+    !homeSection ||
+    !homeReturnButton ||
+    !homeReturnArrow ||
+    !homeReturnLabel
+  ) {
+    return;
+  }
+
   const homeTop =
     homeSection.offsetTop;
 
   const homeBottom =
-    homeTop +
-    homeSection.offsetHeight;
+    homeTop + homeSection.offsetHeight;
 
   const viewportMiddle =
     window.scrollY +
@@ -733,24 +743,24 @@ function updateHomeReturnButton() {
 
   if (viewportMiddle < homeTop) {
     homeReturnButton.hidden = false;
+
     homeReturnButton.setAttribute(
       "aria-label",
       "Return down to the home section"
     );
+
     homeReturnArrow.textContent = "↓";
-    homeReturnLabel.textContent =
-      "Back down";
-  } else if (
-    viewportMiddle > homeBottom
-  ) {
+    homeReturnLabel.textContent = "Back down";
+  } else if (viewportMiddle > homeBottom) {
     homeReturnButton.hidden = false;
+
     homeReturnButton.setAttribute(
       "aria-label",
       "Return to the home section"
     );
+
     homeReturnArrow.textContent = "↑";
-    homeReturnLabel.textContent =
-      "Back to top";
+    homeReturnLabel.textContent = "Back to top";
   } else {
     homeReturnButton.hidden = true;
   }
@@ -762,7 +772,19 @@ window.addEventListener(
   { passive: true }
 );
 
+/*
+  Position the hidden page at Home first. Reveal it only
+  after the initial positioning is complete.
+*/
 function showPageAtHomeImmediately() {
+  if (!homeSection) {
+    document.documentElement.classList.remove(
+      "initializing-home"
+    );
+
+    return;
+  }
+
   const root =
     document.documentElement;
 
@@ -872,6 +894,10 @@ window.addEventListener("resize", () => {
   );
 });
 
+/*
+  Keep exactly 50px of grass showing below the View More
+  button regardless of how many cards are currently visible.
+*/
 const grassBottomGap = 50;
 
 function syncGrassSectionHeight() {
@@ -894,11 +920,12 @@ function syncGrassSectionHeight() {
     window.scrollY;
 
   const viewMoreBottom =
-    viewMoreWrap.getBoundingClientRect()
-      .bottom + window.scrollY;
+    viewMoreWrap.getBoundingClientRect().bottom +
+    window.scrollY;
 
   const desiredHeight =
-    (viewMoreBottom - sectionTop) +
+    viewMoreBottom -
+    sectionTop +
     grassBottomGap;
 
   section.style.minHeight =
@@ -917,6 +944,10 @@ function addEvenlySpacedClovers(
   imageDimensions,
   options = {}
 ) {
+  if (!section) {
+    return;
+  }
+
   const {
     minimumOpacity = 0.65,
     maximumOpacity = 1,
@@ -1048,11 +1079,7 @@ function addEvenlySpacedClovers(
     );
   }
 
-  for (
-    let index = 0;
-    index < amount;
-    index++
-  ) {
+  for (let index = 0; index < amount; index++) {
     const quarterTurns =
       Math.floor(Math.random() * 4);
 
@@ -1078,6 +1105,10 @@ function addEvenlySpacedClovers(
     const halfHeight =
       displayedHeight / 2;
 
+    /*
+      The image diagonal is used as a conservative boundary
+      so the clover remains fully inside the section when rotated.
+    */
     const rotationSafeRadius =
       Math.hypot(
         imageDimensions.width,
@@ -1117,8 +1148,7 @@ function addEvenlySpacedClovers(
 
     if (
       minimumX > maximumX ||
-      boundedMinimumY >
-        boundedMaximumY
+      boundedMinimumY > boundedMaximumY
     ) {
       continue;
     }
@@ -1132,10 +1162,7 @@ function addEvenlySpacedClovers(
         x:
           minimumX +
           Math.random() *
-            (
-              maximumX -
-              minimumX
-            ),
+            (maximumX - minimumX),
 
         y:
           boundedMinimumY +
@@ -1157,17 +1184,11 @@ function addEvenlySpacedClovers(
       }
 
       const nearestDistance =
-        distanceFromNearestClover(
-          candidate
-        );
+        distanceFromNearestClover(candidate);
 
-      if (
-        nearestDistance >
-        bestDistance
-      ) {
+      if (nearestDistance > bestDistance) {
         bestCandidate = candidate;
-        bestDistance =
-          nearestDistance;
+        bestDistance = nearestDistance;
       }
     }
 
@@ -1188,8 +1209,7 @@ function addEvenlySpacedClovers(
 
     clover.src = cloverSource;
     clover.alt = "";
-    clover.className =
-      "random-clover";
+    clover.className = "random-clover";
 
     clover.width = imageDimensions.width;
     clover.height = imageDimensions.height;
@@ -1210,10 +1230,7 @@ function addEvenlySpacedClovers(
       opacity.toFixed(2)
     );
 
-    placedClovers.push(
-      bestCandidate
-    );
-
+    placedClovers.push(bestCandidate);
     layer.appendChild(clover);
   }
 
@@ -1221,49 +1238,64 @@ function addEvenlySpacedClovers(
 }
 
 async function placeAllClovers() {
-  const imageDimensions =
-    await cloverDimensionsPromise;
+  try {
+    const imageDimensions =
+      await cloverDimensionsPromise;
 
-  const fourLeafCloverImage =
-    document.getElementById(
-      "four-leaf-clover-image"
+    const fourLeafCloverImage =
+      document.getElementById(
+        "four-leaf-clover-image"
+      );
+
+    if (fourLeafCloverImage) {
+      fourLeafCloverImage.style.width =
+        `${imageDimensions.width + 7}px`;
+
+      fourLeafCloverImage.style.height =
+        `${imageDimensions.height + 7}px`;
+    }
+
+    addEvenlySpacedClovers(
+      document.querySelector(".hero"),
+      15,
+      imageDimensions,
+      {
+        bandTopFromBottom: 145,
+        bandBottomFromBottom: 40,
+        edgePadding: 24,
+        candidateAttempts: 160
+      }
     );
 
-  fourLeafCloverImage.style.width =
-    `${imageDimensions.width + 7}px`;
+    const projectsSection =
+      document.querySelector(".extended-page");
 
-  fourLeafCloverImage.style.height =
-    `${imageDimensions.height + 7}px`;
-
-  addEvenlySpacedClovers(
-    document.querySelector(".hero"),
-    15,
-    imageDimensions,
-    {
-      bandTopFromBottom: 145,
-      bandBottomFromBottom: 40,
-      edgePadding: 24,
-      candidateAttempts: 160
+    if (projectsSection) {
+      addEvenlySpacedClovers(
+        projectsSection,
+        projectsSection.classList.contains(
+          "is-expanded"
+        )
+          ? 75
+          : 55,
+        imageDimensions,
+        {
+          topStart: 0.02,
+          bottomEnd: 0.96,
+          edgePadding: 32,
+          cardSelector:
+            ".project-card, .projects-view-more-wrap, .four-leaf-clover, .projects-header",
+          cardClearance: 35,
+          candidateAttempts: 200
+        }
+      );
     }
-  );
-
-  const projectsSection =
-    document.querySelector(".extended-page");
-
-  addEvenlySpacedClovers(
-    projectsSection,
-    projectsSection.classList.contains("is-expanded") ? 75 : 55,
-    imageDimensions,
-    {
-      topStart: 0.02,
-      bottomEnd: 0.96,
-      edgePadding: 32,
-      cardSelector:
-        ".info-card, .projects-view-more-wrap, .four-leaf-clover, .projects-header",
-      cardClearance: 35,
-      candidateAttempts: 200
-    }
-  );
+  } catch (error) {
+    console.error(
+      "The decorative clovers could not be created.",
+      error
+    );
+  }
 }
 
 placeAllClovers();
@@ -1280,15 +1312,12 @@ let cloverResizeTimer;
 window.addEventListener(
   "resize",
   () => {
-    clearTimeout(
-      cloverResizeTimer
-    );
+    clearTimeout(cloverResizeTimer);
 
-    cloverResizeTimer =
-      setTimeout(() => {
-        placeAllClovers();
-        syncGrassSectionHeight();
-      }, 200);
+    cloverResizeTimer = setTimeout(() => {
+      placeAllClovers();
+      syncGrassSectionHeight();
+    }, 200);
   }
 );
 
@@ -1304,10 +1333,15 @@ const projectsViewMore =
 
 projectsViewMore?.addEventListener("click", () => {
   const isExpanded =
-    projectsSection.classList.toggle("is-expanded");
+    projectsSection.classList.toggle(
+      "is-expanded"
+    );
 
-  projectCards.forEach((card) => {
-    card.classList.toggle("is-hidden", !isExpanded && projectCards.indexOf(card) >= 6);
+  projectCards.forEach((card, index) => {
+    card.classList.toggle(
+      "is-hidden",
+      !isExpanded && index >= 6
+    );
   });
 
   projectsViewMore.setAttribute(
@@ -1315,16 +1349,25 @@ projectsViewMore?.addEventListener("click", () => {
     String(isExpanded)
   );
 
-  const label = projectsViewMore.querySelector("span:last-child");
+  const label =
+    projectsViewMore.querySelector(
+      "span:last-child"
+    );
+
   if (label) {
     label.textContent = isExpanded
       ? "View Less"
       : "View More";
   }
 
-  const icon = projectsViewMore.querySelector("span:first-child");
+  const icon =
+    projectsViewMore.querySelector(
+      "span:first-child"
+    );
+
   if (icon) {
-    icon.textContent = isExpanded ? "−" : "＋";
+    icon.textContent =
+      isExpanded ? "−" : "＋";
   }
 
   requestAnimationFrame(() => {
@@ -1333,20 +1376,76 @@ projectsViewMore?.addEventListener("click", () => {
   });
 });
 
+/*
+  Project information appears on hover and keyboard focus
+  through CSS. These listeners add equivalent behavior for
+  tapping a project tile.
+*/
+const projectTiles = [
+  ...document.querySelectorAll(".project-tile")
+];
+
+function closeProjectTiles(exceptTile = null) {
+  projectTiles.forEach((tile) => {
+    if (tile !== exceptTile) {
+      tile.classList.remove("is-active");
+    }
+  });
+}
+
+projectTiles.forEach((tile) => {
+  tile.addEventListener("click", (event) => {
+    const wasActive =
+      tile.classList.contains("is-active");
+
+    closeProjectTiles(tile);
+
+    tile.classList.toggle(
+      "is-active",
+      !wasActive
+    );
+
+    event.stopPropagation();
+  });
+
+  tile.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Enter" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+      tile.click();
+    }
+
+    if (event.key === "Escape") {
+      tile.classList.remove("is-active");
+      tile.blur();
+    }
+  });
+});
+
+document.addEventListener("click", () => {
+  closeProjectTiles();
+});
+
 const experienceTriggers = [
   ...document.querySelectorAll(
     ".experience-trigger"
   )
 ];
 
+/*
+  Always begin with every experience collapsed
+  and unselected.
+*/
 experienceTriggers.forEach((trigger) => {
-  const item = trigger.closest(
-    ".experience-item"
-  );
+  const item =
+    trigger.closest(".experience-item");
 
-  const details = document.getElementById(
-    trigger.getAttribute("aria-controls")
-  );
+  const details =
+    document.getElementById(
+      trigger.getAttribute("aria-controls")
+    );
 
   trigger.setAttribute(
     "aria-expanded",
@@ -1408,18 +1507,21 @@ const courseTabs = [
 
 function activateCourseTab(selectedTab) {
   courseTabs.forEach((tab) => {
-    const isSelected = tab === selectedTab;
+    const isSelected =
+      tab === selectedTab;
 
     tab.setAttribute(
       "aria-selected",
       String(isSelected)
     );
 
-    tab.tabIndex = isSelected ? 0 : -1;
+    tab.tabIndex =
+      isSelected ? 0 : -1;
 
-    const panel = document.getElementById(
-      tab.getAttribute("aria-controls")
-    );
+    const panel =
+      document.getElementById(
+        tab.getAttribute("aria-controls")
+      );
 
     if (panel) {
       panel.hidden = !isSelected;
@@ -1443,15 +1545,18 @@ courseTabs.forEach((tab, index) => {
     event.preventDefault();
 
     const direction =
-      event.key === "ArrowRight" ? 1 : -1;
+      event.key === "ArrowRight"
+        ? 1
+        : -1;
 
-    const nextTab = courseTabs[
-      (
-        index +
-        direction +
-        courseTabs.length
-      ) % courseTabs.length
-    ];
+    const nextTab =
+      courseTabs[
+        (
+          index +
+          direction +
+          courseTabs.length
+        ) % courseTabs.length
+      ];
 
     activateCourseTab(nextTab);
     nextTab.focus();
@@ -1459,14 +1564,10 @@ courseTabs.forEach((tab, index) => {
 });
 
 const fourLeafClover =
-  document.getElementById(
-    "four-leaf-clover"
-  );
+  document.getElementById("four-leaf-clover");
 
 const cloverMessage =
-  document.getElementById(
-    "clover-message"
-  );
+  document.getElementById("clover-message");
 
 const cloverMessageClose =
   document.getElementById(
@@ -1474,9 +1575,7 @@ const cloverMessageClose =
   );
 
 const developerLuck =
-  document.getElementById(
-    "developer-luck"
-  );
+  document.getElementById("developer-luck");
 
 const developerLuckMessages = [
   "A mysterious bug will be resolved today.",
@@ -1492,9 +1591,12 @@ const developerLuckMessages = [
 ];
 
 function createCloverConfetti() {
+  if (!fourLeafClover) {
+    return;
+  }
+
   const rectangle =
-    fourLeafClover
-      .getBoundingClientRect();
+    fourLeafClover.getBoundingClientRect();
 
   const originX =
     rectangle.left +
@@ -1519,17 +1621,14 @@ function createCloverConfetti() {
         Math.PI *
         2 *
         index
-      ) /
-        totalPieces +
+      ) / totalPieces +
       (
         Math.random() -
         0.5
-      ) *
-        0.35;
+      ) * 0.35;
 
     const distance =
-      75 +
-      Math.random() * 115;
+      75 + Math.random() * 115;
 
     const isClover =
       index % 3 === 0;
@@ -1539,7 +1638,6 @@ function createCloverConfetti() {
       : "images/favicon_star.PNG";
 
     piece.alt = "";
-
     piece.className =
       "clover-confetti-piece";
 
@@ -1551,39 +1649,25 @@ function createCloverConfetti() {
 
     piece.style.setProperty(
       "--burst-x",
-      `${
-        Math.cos(angle) *
-        distance
-      }px`
+      `${Math.cos(angle) * distance}px`
     );
 
     piece.style.setProperty(
       "--burst-y",
-      `${
-        Math.sin(angle) *
-        distance
-      }px`
+      `${Math.sin(angle) * distance}px`
     );
 
     piece.style.setProperty(
       "--piece-rotation",
-      `${
-        180 +
-        Math.random() * 540
-      }deg`
+      `${180 + Math.random() * 540}deg`
     );
 
     piece.style.setProperty(
       "--piece-size",
-      `${
-        12 +
-        Math.random() * 12
-      }px`
+      `${12 + Math.random() * 12}px`
     );
 
-    document.body.appendChild(
-      piece
-    );
+    document.body.appendChild(piece);
 
     piece.addEventListener(
       "animationend",
@@ -1595,6 +1679,14 @@ function createCloverConfetti() {
 }
 
 function openCloverMessage() {
+  if (
+    !fourLeafClover ||
+    !cloverMessage ||
+    !developerLuck
+  ) {
+    return;
+  }
+
   fourLeafClover.classList.remove(
     "is-celebrating"
   );
@@ -1607,14 +1699,16 @@ function openCloverMessage() {
 
   createCloverConfetti();
 
-  avatarDefaultSource =
-    "images/Avatar_wClover.PNG";
+  if (avatar) {
+    avatarDefaultSource =
+      "images/Avatar_wClover.PNG";
 
-  avatarBlinkSource =
-    "images/Avatar_wClover_Blink.PNG";
+    avatarBlinkSource =
+      "images/Avatar_wClover_Blink.PNG";
 
-  avatar.src =
-    avatarDefaultSource;
+    avatar.src =
+      avatarDefaultSource;
+  }
 
   const randomLuck =
     developerLuckMessages[
@@ -1642,11 +1736,15 @@ function openCloverMessage() {
       "true"
     );
 
-    cloverMessageClose.focus();
+    cloverMessageClose?.focus();
   }, 450);
 }
 
 function closeCloverMessage() {
+  if (!cloverMessage || !fourLeafClover) {
+    return;
+  }
+
   cloverMessage.classList.remove(
     "is-visible"
   );
@@ -1664,12 +1762,12 @@ function closeCloverMessage() {
   fourLeafClover.focus();
 }
 
-fourLeafClover.addEventListener(
+fourLeafClover?.addEventListener(
   "click",
   openCloverMessage
 );
 
-cloverMessageClose.addEventListener(
+cloverMessageClose?.addEventListener(
   "click",
   closeCloverMessage
 );
@@ -1679,7 +1777,7 @@ window.addEventListener(
   (event) => {
     if (
       event.key === "Escape" &&
-      cloverMessage.classList.contains(
+      cloverMessage?.classList.contains(
         "is-visible"
       )
     ) {
@@ -1688,10 +1786,12 @@ window.addEventListener(
   }
 );
 
+/*
+  Mailbox and Contact navigation open the contact
+  envelope dialog.
+*/
 const mailboxButton =
-  document.getElementById(
-    "mailbox-button"
-  );
+  document.getElementById("mailbox-button");
 
 const contactNavButton =
   document.getElementById(
@@ -1711,12 +1811,15 @@ const contactEnvelopeClose =
 let lastContactTrigger = null;
 let contactEnvelopeHideTimer = null;
 
-function openContactEnvelope(
-  triggerElement
-) {
-  clearTimeout(
-    contactEnvelopeHideTimer
-  );
+function openContactEnvelope(triggerElement) {
+  if (
+    !contactEnvelopeOverlay ||
+    !contactEnvelopeClose
+  ) {
+    return;
+  }
+
+  clearTimeout(contactEnvelopeHideTimer);
 
   lastContactTrigger =
     triggerElement || null;
@@ -1733,14 +1836,20 @@ function openContactEnvelope(
     contactEnvelopeOverlay.classList.add(
       "is-visible"
     );
+
     contactEnvelopeClose.focus();
   });
 }
 
 function closeContactEnvelope() {
+  if (!contactEnvelopeOverlay) {
+    return;
+  }
+
   contactEnvelopeOverlay.classList.remove(
     "is-visible"
   );
+
   document.body.style.overflow = "";
 
   mailboxButton?.setAttribute(
@@ -1755,6 +1864,10 @@ function closeContactEnvelope() {
   lastContactTrigger?.focus();
 }
 
+/*
+  Wait for the smooth scroll to Home to settle,
+  then open the envelope.
+*/
 function revealContactAfterHomeScroll(
   triggerElement
 ) {
@@ -1763,7 +1876,25 @@ function revealContactAfterHomeScroll(
   }, 550);
 }
 
-contactNavButton.addEventListener(
+mailboxButton?.addEventListener(
+  "click",
+  () => {
+    setActiveNavigation("home");
+    scrollToHome();
+
+    history.replaceState(
+      null,
+      "",
+      "#home"
+    );
+
+    revealContactAfterHomeScroll(
+      mailboxButton
+    );
+  }
+);
+
+contactNavButton?.addEventListener(
   "click",
   () => {
     revealContactAfterHomeScroll(
@@ -1772,12 +1903,12 @@ contactNavButton.addEventListener(
   }
 );
 
-contactEnvelopeClose.addEventListener(
+contactEnvelopeClose?.addEventListener(
   "click",
   closeContactEnvelope
 );
 
-contactEnvelopeOverlay.addEventListener(
+contactEnvelopeOverlay?.addEventListener(
   "click",
   (event) => {
     if (
@@ -1794,7 +1925,7 @@ window.addEventListener(
   (event) => {
     if (
       event.key === "Escape" &&
-      contactEnvelopeOverlay.classList.contains(
+      contactEnvelopeOverlay?.classList.contains(
         "is-visible"
       )
     ) {
@@ -1804,9 +1935,7 @@ window.addEventListener(
 );
 
 const avatar =
-  document.getElementById(
-    "avatar"
-  );
+  document.getElementById("avatar");
 
 let avatarDefaultSource =
   "images/Avatar.PNG";
@@ -1814,23 +1943,19 @@ let avatarDefaultSource =
 let avatarBlinkSource =
   "images/Avatar_Blink.PNG";
 
-avatar.addEventListener(
+avatar?.addEventListener(
   "click",
   () => {
-    avatar.src =
-      avatarBlinkSource;
+    avatar.src = avatarBlinkSource;
 
     setTimeout(() => {
-      avatar.src =
-        avatarDefaultSource;
+      avatar.src = avatarDefaultSource;
     }, 300);
   }
 );
 
 const changingText =
-  document.getElementById(
-    "changing-text"
-  );
+  document.getElementById("changing-text");
 
 const phrases = [
   "Software Engineer",
@@ -1844,6 +1969,10 @@ let characterIndex = 0;
 let isDeleting = false;
 
 function animateText() {
+  if (!changingText) {
+    return;
+  }
+
   const currentPhrase =
     phrases[phraseIndex];
 
@@ -1864,8 +1993,7 @@ function animateText() {
 
   if (
     !isDeleting &&
-    characterIndex ===
-      currentPhrase.length
+    characterIndex === currentPhrase.length
   ) {
     isDeleting = true;
     delay = 2000;
@@ -1876,19 +2004,13 @@ function animateText() {
     isDeleting = false;
 
     phraseIndex =
-      (
-        phraseIndex +
-        1
-      ) %
+      (phraseIndex + 1) %
       phrases.length;
 
     delay = 400;
   }
 
-  setTimeout(
-    animateText,
-    delay
-  );
+  setTimeout(animateText, delay);
 }
 
 animateText();
