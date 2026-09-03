@@ -97,30 +97,30 @@ const aboutStories = [
     title: "Fav Quote",
     text: "My fav quote is: \"The only real mistake is the one from which we learn nothing.\" 💬"
   },
-  {
-    title: "Photo Gallery",
-    text: "Here are some photos I've taken:"
-  },
+//   {
+//     title: "Photo Gallery",
+//     text: "Here are some photos I've taken:"
+//   },
   {
     title: "Lifelong Learner",
     text: "My main goal is to keep learning, thinking, and growing~!"
   },
-  {
-    title: "Mentor",
-    text: "I value helping other people build confidence, navigate unfamiliar problems, and grow their skills."
-  },
-  {
-    title: "Design Enthusiast",
-    text: "I care about clear, friendly UI and UX that helps technology feel intuitive and welcoming."
-  },
-  {
-    title: "Project Builder",
-    text: "I love bringing ideas from an early concept to something real that people can see, use, and enjoy."
-  },
-  {
-    title: "Easter Eggs",
-    text: "There are some easter eggs hiding around this website. Try and find them all~! :D"
-  }
+//   {
+//     title: "Mentor",
+//     text: "I value helping other people build confidence, navigate unfamiliar problems, and grow their skills."
+//   },
+//   {
+//     title: "Design Enthusiast",
+//     text: "I care about clear, friendly UI and UX that helps technology feel intuitive and welcoming."
+//   },
+//   {
+//     title: "Project Builder",
+//     text: "I love bringing ideas from an early concept to something real that people can see, use, and enjoy."
+//   },
+//   {
+//     title: "Easter Eggs",
+//     text: "There are some easter eggs hiding around this website. Try and find them all~! :D"
+//   }
 ];
 
 const aboutStoryStars = [
@@ -162,7 +162,7 @@ function showAboutBookStory(storyIndex) {
   aboutBookTitle.textContent = story.title;
   aboutBookText.textContent = story.text;
   aboutBookPageNumber.textContent =
-    `Story ${storyIndex + 1} of ${aboutStories.length}`;
+    `Fun Fact ${storyIndex + 1} of ${aboutStories.length}`;
 
   aboutBookTabs.forEach((tab, tabIndex) => {
     const isSelected = tabIndex === storyIndex;
