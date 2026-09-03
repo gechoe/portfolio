@@ -48,7 +48,7 @@
 .project-tile.is-active {
   outline: none;
   transform: translateY(-7px);
-  box-shadow: 0 18px 30px rgba(48, 76, 52, 0.3);
+  box-shadow: 0 18px 30px rgba(65, 77, 68, 0.3);
 }
 
 .project-tile .project-card-image,
@@ -82,7 +82,7 @@
   z-index: 1;
   background: linear-gradient(
     to top,
-    rgba(30, 57, 38, 0.96) 0%,
+    rgba(65, 77, 68, 0.96) 0%,
     rgba(49, 84, 59, 0.88) 55%,
     rgba(49, 84, 59, 0.68) 100%
   );
